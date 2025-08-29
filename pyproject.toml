@@ -1,0 +1,13 @@
+[project]
+name = "google-trends-crawler"
+version = "1.0.0"
+description = "A crawler for Google Trends Taiwan daily hot searches using Selenium."
+authors = [
+    { name="Yolin", email="yo901220@email.com" }
+]
+requires-python = ">=3.9"
+
+dependencies = [
+    "selenium",
+    "rich"
+]
