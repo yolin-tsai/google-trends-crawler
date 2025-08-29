@@ -67,7 +67,7 @@ google-trends-crawler/
 ├── utils.py           # 共用工具
 ├── constants.py       # 常數與 selector 管理
 ├── config.json        # 設定檔
-├── pyproject.toml     # Python 依賴管理（推薦）
+├── pyproject.toml     # Python 依賴管理
 ├── README.md          # 使用說明文件
 ├── venv/              # 虛擬環境資料夾（可選）
 ```
