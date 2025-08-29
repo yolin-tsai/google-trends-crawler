@@ -1,12 +1,10 @@
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from rich.progress import Progress
-from typing import List, Set
-from time import sleep
 from selenium.webdriver.common.by import By
+
+from time import sleep
 from rich.progress import Progress
-from constants import TITLE_SELECTOR, NEXT_BTN_SELECTOR
 
 def wait_for_element(driver: WebDriver, by: str, selector: str, timeout: int) -> None:
     WebDriverWait(driver, timeout).until(
@@ -18,14 +16,14 @@ def fetch_titles(
     total: int,
     sleep_sec: int,
     max_page: int
-) -> List[str]:
-    titles: List[str] = []
-    seen: Set[str] = set()
+) -> list[str]:
+    titles: list[str] = []
+    seen: set[str] = set()
     page_count: int = 0
     with Progress() as progress:
         task = progress.add_task("[cyan]Fetching titles...", total=total)
         while len(titles) < total and page_count < max_page:
-            titles_this_page = driver.find_elements(By.CSS_SELECTOR, TITLE_SELECTOR)
+            titles_this_page = driver.find_elements(By.CSS_SELECTOR, "div.mZ3RIc")
             for t in titles_this_page:
                 text = t.text.strip()
                 if text and text not in seen:
@@ -35,7 +33,7 @@ def fetch_titles(
                     if len(titles) >= total:
                         break
             try:
-                next_btn = driver.find_element(By.CSS_SELECTOR, NEXT_BTN_SELECTOR)
+                next_btn = driver.find_element(By.CSS_SELECTOR, "button[aria-label='前往下一頁']")
                 if not next_btn.is_enabled():
                     break
                 next_btn.click()
@@ -58,19 +56,19 @@ def fetch_category_titles(
     driver.get(cat_url)
     try:
         WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, TITLE_SELECTOR))
+            EC.presence_of_element_located((By.CSS_SELECTOR, "div.mZ3RIc"))
         )
     except Exception:
         return set()
-    cat_titles: Set[str] = set()
+    cat_titles: set[str] = set()
     while True:
-        cat_this_page = driver.find_elements(By.CSS_SELECTOR, TITLE_SELECTOR)
+        cat_this_page = driver.find_elements(By.CSS_SELECTOR, "div.mZ3RIc")
         for t in cat_this_page:
             text = t.text.strip()
             if text:
                 cat_titles.add(text)
         try:
-            next_btn = driver.find_element(By.CSS_SELECTOR, NEXT_BTN_SELECTOR)
+            next_btn = driver.find_element(By.CSS_SELECTOR, "button[aria-label='前往下一頁']")
             if not next_btn.is_enabled():
                 break
             next_btn.click()
@@ -82,7 +80,7 @@ def fetch_category_titles(
             break
     return cat_titles
 
-def show_progress_for_filter(cat_name: str, cat_titles: Set[str]) -> None:
+def show_progress_for_filter(cat_name: str, cat_titles: set[str]) -> None:
     with Progress() as progress:
         task = progress.add_task(f"[red]Filtering {cat_name}...", total=len(cat_titles))
         for _ in cat_titles:

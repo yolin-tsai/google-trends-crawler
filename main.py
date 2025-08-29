@@ -6,7 +6,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.chrome.options import Options
 
-from constants import DEFAULT_CONFIG_PATH
 from utils import *
 
 # Setup logging
@@ -15,7 +14,7 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
-def load_config(path: str = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
+def load_config(path: str ) -> dict[str, Any]:
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
@@ -30,7 +29,7 @@ def setup_driver(headless: bool = True) -> WebDriver:
     return webdriver.Chrome(options=chrome_options)
 
 def main() -> None:
-    config: dict[str, Any] = load_config()
+    config: dict[str, Any] = load_config("config.json")
     country_info: dict[str, Any] = config["TARGET_COUNTRY"]
     TARGET_COUNTRY: str = country_info.get("NAME", "台灣")
     GEO: str = country_info.get("GEO", "TW")

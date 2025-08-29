@@ -9,7 +9,7 @@
     "HEADLESS": true,
     "MAX_PAGE": 10,
     "WAIT_ELEMENT_SEC": 10,
-    "SLEEP_SEC": 1,
+    "SLEEP_SEC": 0.5,
     "CATEGORY": {
     "汽車與交通工具": { "id": 1, "enabled": false },
     "美容與時尚": { "id": 2, "enabled": false },
