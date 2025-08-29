@@ -1,0 +1,33 @@
+{
+    "TARGET_COUNTRY": {
+    "NAME": "台灣",
+    "GEO": "TW",
+    "HL": "zh-TW"
+    },
+    "TARGET_URL": "https://trends.google.com.tw/trending?",
+    "TOP_N": 100,
+    "HEADLESS": true,
+    "MAX_PAGE": 10,
+    "WAIT_ELEMENT_SEC": 10,
+    "SLEEP_SEC": 1,
+    "CATEGORY": {
+    "汽車與交通工具": { "id": 1, "enabled": true },
+    "美容與時尚": { "id": 2, "enabled": true },
+    "商業與財經": { "id": 3, "enabled": true },
+    "娛樂": { "id": 4, "enabled": true },
+    "餐飲": { "id": 5, "enabled": true },
+    "遊戲": { "id": 6, "enabled": true },
+    "醫療保健": { "id": 7, "enabled": true },
+    "興趣與休閒": { "id": 8, "enabled": true },
+    "職業與教育": { "id": 9, "enabled": true },
+    "法律與政府": { "id": 10, "enabled": false },
+    "其他": { "id": 11, "enabled": true },
+    "政治": { "id": 14, "enabled": false },
+    "科學": { "id": 15, "enabled": true },
+    "購物": { "id": 16, "enabled": true },
+    "運動": { "id": 17, "enabled": true },
+    "科技": { "id": 18, "enabled": true },
+    "旅遊與運輸工具": { "id": 19, "enabled": true },
+    "氣候": { "id": 20, "enabled": true }
+    }
+}
