@@ -11,9 +11,9 @@
     "WAIT_ELEMENT_SEC": 10,
     "SLEEP_SEC": 1,
     "CATEGORY": {
-    "汽車與交通工具": { "id": 1, "enabled": true },
-    "美容與時尚": { "id": 2, "enabled": true },
-    "商業與財經": { "id": 3, "enabled": true },
+    "汽車與交通工具": { "id": 1, "enabled": false },
+    "美容與時尚": { "id": 2, "enabled": false },
+    "商業與財經": { "id": 3, "enabled": false },
     "娛樂": { "id": 4, "enabled": true },
     "餐飲": { "id": 5, "enabled": true },
     "遊戲": { "id": 6, "enabled": true },
