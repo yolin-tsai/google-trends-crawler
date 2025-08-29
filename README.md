@@ -1,8 +1,9 @@
-# pytrendsProject
+# google-trends-crawler
 
 ## 介紹
 
-本專案利用 Selenium 自動化瀏覽器，抓取 Google Trends 台灣每日熱門搜尋前 N 筆資料。可透過 `config.json` 設定自動過濾指定分類（如政治、法律與政府等）。
+利用 Selenium 自動化瀏覽器，抓取 Google Trends 台灣每日熱門搜尋前 N 筆資料。
+可透過 config.json 設定自動過濾指定分類（如「政治」、「法律與政府」等）。
 
 ---
 
@@ -18,9 +19,7 @@
 1. **建立虛擬環境（建議）**
     ```sh
     python3 -m venv venv
-    ```
-    或（依系統設定，有些環境可用 python）
-    ```sh
+    # 或依系統設定
     python -m venv venv
     ```
 
@@ -33,7 +32,7 @@
         ```sh
         venv\Scripts\activate
         ```
-    啟動成功後，命令列前方會出現 `(venv)` 提示字樣，表示目前已進入虛擬環境。
+    啟動成功後，命令列前方會出現 `(venv)` 提示字樣。
     
 3. **安裝所需套件**
     ```sh
@@ -44,9 +43,7 @@
     - 請確保 ChromeDriver 版本與 Chrome 瀏覽器相符。
     - 下載：[ChromeDriver 下載頁](https://chromedriver.chromium.org/downloads)
 
-5. **（如需調整）編輯 `config.json`**
-
-6. **執行主程式**
+5. **執行主程式**
     ```sh
     python main.py
     ```
@@ -63,7 +60,7 @@
 ## 專案結構
 
 ```
-pytrendsProject/
+google-trends-crawler/
 ├── main.py                    # 主程式，負責抓取與過濾 Google Trends 熱門搜尋
 ├── config.json                # 設定檔，調整國家、分類、數量等參數
 ├── requirements.txt           # Python 套件需求清單
