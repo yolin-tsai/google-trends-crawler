@@ -46,9 +46,9 @@ def fetch_titles(
                 if title and title not in seen:
                     titles.append({
                         "title": title,
-                        "volume": volume,
-                        "percent": percent,
-                        "time": time_info
+                        "搜尋量": volume,
+                        "上升幅度": percent,
+                        "開始於": time_info
                     })
                     seen.add(title)
                     progress.update(task, advance=1)
