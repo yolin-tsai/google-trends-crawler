@@ -11,3 +11,6 @@ dependencies = [
     "selenium",
     "rich"
 ]
+
+[project.urls]
+Homepage = "https://github.com/yolin-tsai/google-trends-crawler"
