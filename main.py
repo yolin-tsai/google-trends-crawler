@@ -61,7 +61,7 @@ def main() -> None:
             logging.info(f"Fetching category '{cat_name}' for filtering...")
             cat_titles: set[str] = fetch_category_titles(driver, TARGET_URL, cat_id, SLEEP_SEC)
             show_progress_for_filter(cat_name, cat_titles)
-            titles = [t for t in titles if t not in cat_titles]
+            titles = [t for t in titles if t["title"] not in cat_titles]
             logging.info(f"Category '{cat_name}' filtered, total {len(cat_titles)} items removed.")
 
         logging.info(f"{TARGET_COUNTRY} Google Trends Top {TOP_N} Searches:")

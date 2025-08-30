@@ -16,19 +16,41 @@ def fetch_titles(
     total: int,
     sleep_sec: int,
     max_page: int
-) -> list[str]:
-    titles: list[str] = []
+) -> list[dict[str, str]]:
+    titles: list[dict[str, str]] = []
     seen: set[str] = set()
     page_count: int = 0
+    from rich.progress import Progress
+
     with Progress() as progress:
         task = progress.add_task("[cyan]Fetching titles...", total=total)
         while len(titles) < total and page_count < max_page:
-            titles_this_page = driver.find_elements(By.CSS_SELECTOR, "div.mZ3RIc")
-            for t in titles_this_page:
-                text = t.text.strip()
-                if text and text not in seen:
-                    titles.append(text)
-                    seen.add(text)
+            tr_elements = driver.find_elements(By.CSS_SELECTOR, "tr[jsname='oKdM2c']")
+            for tr in tr_elements:
+                try:
+                    title = tr.find_element(By.CSS_SELECTOR, "div.mZ3RIc").text.strip()
+                except Exception:
+                    title = ""
+                try:
+                    volume = tr.find_element(By.CSS_SELECTOR, "div.lqv0Cb").text.strip()
+                except Exception:
+                    volume = ""
+                try:
+                    percent = tr.find_element(By.CSS_SELECTOR, "div.TXt85b").text.strip()
+                except Exception:
+                    percent = ""
+                try:
+                    time_info = tr.find_element(By.CSS_SELECTOR, "div.vdw3Ld").text.strip()
+                except Exception:
+                    time_info = ""
+                if title and title not in seen:
+                    titles.append({
+                        "title": title,
+                        "volume": volume,
+                        "percent": percent,
+                        "time": time_info
+                    })
+                    seen.add(title)
                     progress.update(task, advance=1)
                     if len(titles) >= total:
                         break
@@ -38,7 +60,7 @@ def fetch_titles(
                     break
                 next_btn.click()
                 WebDriverWait(driver, 10).until(
-                    EC.staleness_of(titles_this_page[0])
+                    EC.staleness_of(tr_elements[0])
                 )
                 sleep(sleep_sec)
             except Exception:
